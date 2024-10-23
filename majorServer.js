@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
-  database: "test_user",
+  database: "users",
 });
 connection.connect((err) => {
   if (err) {
@@ -60,6 +60,7 @@ const getUser = async (req, res) => {
 };
 const createUser = async (req, res) => {
   const { first_name, last_name, email, major_id } = req.body;
+  console.log("mybody");
   try {
     connection.query(
       "INSERT INTO student(first_name,last_name,email,major_id) VALUES(?,?,?,?)",
