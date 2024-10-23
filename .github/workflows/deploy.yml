@@ -1,0 +1,38 @@
+name: Deploy to DigitalOcean Droplet
+
+on:
+  push:
+    branches:
+      - main  # สาขาที่ใช้ในการ deploy (เปลี่ยนได้ตามต้องการ)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # ปรับตาม Node.js เวอร์ชันที่คุณใช้อยู่
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build  # ปรับตาม script ของคุณ
+
+      - name: Deploy to Droplet via SSH
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+          passphrase: ${{ secrets.DROPLET_PASSPHRASE }}  # ใส่เฉพาะถ้ามี passphrase
+          script: |
+            cd /var/www/test-cicd  
+            git pull origin main
+            npm install
+            pm2 restart all   
