@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
   password: "root",
   database: "users",
   port: "3306",
+  connectTimeout: 10000,
 });
 connection.connect((err) => {
   if (err) {
@@ -17,6 +18,14 @@ connection.connect((err) => {
   console.log("user connection success");
 });
 
+connection.on("error", function (err) {
+  if (err.code === "PROTOCOL_CONNECTION_LOST") {
+    console.log("Connection lost, reconnecting...");
+    connection.connect();
+  } else {
+    throw err;
+  }
+});
 const getUsers = async (req, res) => {
   try {
     connection.query("SELECT * FROM student", (err, result, fields) => {
