@@ -17,7 +17,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'  # ปรับตาม Node.js เวอร์ชันที่คุณใช้อยู่
-
+      
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
       - name: Install dependencies
         run: npm install
 
