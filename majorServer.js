@@ -89,7 +89,7 @@ const getUser = async (req, res) => {
 };
 const createUser = async (req, res) => {
   const { first_name, last_name, email, major_id } = req.body;
-  console.log("hello bug pang");
+  console.log("hello nong pang");
   try {
     connection.query(
       "INSERT INTO student(first_name,last_name,email,major_id) VALUES(?,?,?,?)",
