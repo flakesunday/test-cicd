@@ -7,10 +7,29 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
-  database: "users",
+  database: "test_user",
   port: "3306",
   connectTimeout: 10000,
 });
+// const pool = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "root",
+//   database: "test_user",
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
+// pool.getConnection((err, connection) => {
+//   if (err) throw err;
+
+//   connection.query("SELECT * FROM student", (error, results) => {
+//     connection.release(); // คืน connection กลับไปยัง pool
+
+//     if (error) throw error;
+//     console.log(results);
+//   });
+// });
 connection.connect((err) => {
   if (err) {
     console.log(err);
