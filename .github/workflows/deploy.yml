@@ -34,8 +34,8 @@ jobs:
         with:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.DROPLET_USER }}
-          key: ${{ secrets.DROPLET_SSH_KEY }}
-          passphrase: ${{ secrets.DROPLET_PASSPHRASE }}  # ใส่เฉพาะถ้ามี passphrase
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          #passphrase: ${{ secrets.DROPLET_PASSPHRASE }}  # ใส่เฉพาะถ้ามี passphrase
           script: |
             cd /var/www/test-cicd  
             git pull origin main
