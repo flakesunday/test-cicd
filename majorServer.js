@@ -1,13 +1,13 @@
 const express = require("express");
 const mysql = require("mysql");
-
+require("dotenv").config();
 const app = express();
 app.use(express.json());
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "test_user",
+  host: process.env.DB_HOST || "127.0.0.1",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "root",
+  database: process.env.DB_NAME || "test_user",
   port: "3306",
   connectTimeout: 10000,
 });
