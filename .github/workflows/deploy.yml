@@ -16,13 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # ปรับตาม Node.js เวอร์ชันที่คุณใช้อยู่
+          node-version: '18'  # ปรับตาม Node.js เวอร์ชันที่คุณใช้อยู่
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
-        run: npm run dev  # ปรับตาม script ของคุณ
+     # - name: Build project
+      #  run: npm run dev  # ปรับตาม script ของคุณ
 
       - name: Deploy to Droplet via SSH
         uses: appleboy/ssh-action@v0.1.5
@@ -35,4 +35,5 @@ jobs:
             cd /var/www/test-cicd  
             git pull origin main
             npm install
+            npm run dev
             pm2 restart all   
