@@ -39,6 +39,7 @@ jobs:
           script: |
             cd /var/www/test-cicd  
             git pull origin main
+            npm install -g pm2
             npm install
            
             pm2 restart all   
