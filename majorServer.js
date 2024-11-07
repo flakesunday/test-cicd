@@ -53,6 +53,7 @@ const getUsers = async (req, res) => {
         res.status(400).json({ message: "failed" });
       }
       console.log(result);
+      console.log("hello");
       res.status(200).json({
         message: "success",
         data: result,
