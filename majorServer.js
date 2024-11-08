@@ -61,6 +61,7 @@ const getUsers = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    console.log("hello");
 
     res.status(400).json({ message: "error" });
   }
